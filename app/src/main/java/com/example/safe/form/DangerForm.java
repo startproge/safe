@@ -1,58 +1,103 @@
 package com.example.safe.form;
 
+import java.util.List;
+
 public class DangerForm {
-    private int dangerId;
-    private String riskResource;
-    private String dangerType;
-    private String dangerStatus;
-    private int dangerTimeLimit;
+    private String type;
+    private String riskSource;
+    private String level;
+    private String description;
+    private String measure;
+    private int timeLimit;
+    private int uid;
+    private List<String> position;
 
-    public DangerForm(int dangerId, String riskResource, String dangerType, String dangerStatus, int dangerTimeLimit) {
-        this.dangerId = dangerId;
-        this.riskResource = riskResource;
-        this.dangerType = dangerType;
-        this.dangerStatus = dangerStatus;
-        this.dangerTimeLimit = dangerTimeLimit;
+    public DangerForm(String type, String riskSource, String level, String description, String measure, int timeLimit, int uid, List<String> position) {
+        this.type = type;
+        this.riskSource = riskSource;
+        this.level = level;
+        this.description = description;
+        this.measure = measure;
+        this.timeLimit = timeLimit;
+        this.uid = uid;
+        this.position = position;
     }
 
-    public String getRiskResource() {
-        return riskResource;
+    public String getType() {
+        return type;
     }
 
-    public void setRiskResource(String riskResource) {
-        this.riskResource = riskResource;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public String getDangerType() {
-        return dangerType;
+    public String getRiskSource() {
+        return riskSource;
     }
 
-    public void setDangerType(String dangerType) {
-        this.dangerType = dangerType;
+    public void setRiskSource(String riskSource) {
+        this.riskSource = riskSource;
     }
 
-    public String getDangerStatus() {
-        return dangerStatus;
+    public String getLevel() {
+        return level;
     }
 
-    public void setDangerStatus(String dangerStatus) {
-        this.dangerStatus = dangerStatus;
+    public void setLevel(String level) {
+        this.level = level;
     }
 
-    public int getDangerTimeLimit() {
-        return dangerTimeLimit;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDangerTimeLimit(int dangerTimeLimit) {
-        this.dangerTimeLimit = dangerTimeLimit;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public int getDangerId() {
-        return dangerId;
+    public String getMeasure() {
+        return measure;
     }
 
-    public void setDangerId(int dangerId) {
-        this.dangerId = dangerId;
+    public void setMeasure(String measure) {
+        this.measure = measure;
     }
 
+    public int getTimeLimit() {
+        return timeLimit;
+    }
+
+    public void setTimeLimit(int timeLimit) {
+        this.timeLimit = timeLimit;
+    }
+
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
+
+    public List<String> getPosition() {
+        return position;
+    }
+
+    public void setPosition(List<String> position) {
+        this.position = position;
+    }
+
+    @Override
+    public String toString() {
+        return "DangerForm{" +
+                "type='" + type + '\'' +
+                ", riskSource='" + riskSource + '\'' +
+                ", level='" + level + '\'' +
+                ", description='" + description + '\'' +
+                ", measure='" + measure + '\'' +
+                ", timeLimit=" + timeLimit +
+                ", uid=" + uid +
+                ", position=" + position +
+                '}';
+    }
 }

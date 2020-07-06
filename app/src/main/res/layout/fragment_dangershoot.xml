@@ -29,7 +29,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/riskSourceLable"
+                    android:id="@+id/riskSourceLabel"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -39,7 +39,7 @@
                     android:textSize="15sp"
                     app:layout_constraintHorizontal_weight="1"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"></TextView>
+                    app:layout_constraintTop_toTopOf="parent"/>
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/riskSourceText"
@@ -54,16 +54,16 @@
                     android:textColor="@color/text"
                     android:textSize="15sp"
                     app:layout_constraintHorizontal_weight="1"
-                    app:layout_constraintLeft_toRightOf="@id/riskSourceLable"
+                    app:layout_constraintLeft_toRightOf="@id/riskSourceLabel"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/riskSourceLable"></androidx.appcompat.widget.AppCompatEditText>
+                    app:layout_constraintTop_toTopOf="@id/riskSourceLabel"/>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout2"
                     android:layout_width="match_parent"
                     android:layout_height="10dp"
                     android:layout_marginTop="5dp"
-                    app:layout_constraintTop_toBottomOf="@+id/riskSourceText"></androidx.constraintlayout.widget.ConstraintLayout>
+                    app:layout_constraintTop_toBottomOf="@+id/riskSourceText"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -73,7 +73,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/riskSourceLayout">
 
                 <TextView
-                    android:id="@+id/dangerTypeLable"
+                    android:id="@+id/dangerTypeLabel"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -86,6 +86,7 @@
                     app:layout_constraintTop_toTopOf="parent"></TextView>
 
                 <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spinner_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -95,7 +96,7 @@
                     android:spinnerMode="dropdown"
                     android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toRightOf="@id/dangerTypeLable"
+                    app:layout_constraintLeft_toRightOf="@id/dangerTypeLabel"
                     app:layout_constraintTop_toTopOf="parent">
 
                 </androidx.appcompat.widget.AppCompatSpinner>
@@ -108,7 +109,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/dangerTypeLayout">
 
                 <TextView
-                    android:id="@+id/dangerLevelLable"
+                    android:id="@+id/dangerLevelLabel"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -121,6 +122,7 @@
                     app:layout_constraintTop_toTopOf="parent"></TextView>
 
                 <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spinner_level"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -130,7 +132,7 @@
                     android:spinnerMode="dropdown"
                     android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toRightOf="@id/dangerLevelLable"
+                    app:layout_constraintLeft_toRightOf="@id/dangerLevelLabel"
                     app:layout_constraintTop_toTopOf="parent">
 
                 </androidx.appcompat.widget.AppCompatSpinner>
@@ -143,7 +145,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/dangerLevelLayout">
 
                 <TextView
-                    android:id="@+id/dangerDescriptionLable"
+                    android:id="@+id/dangerDescriptionLabel"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -153,7 +155,7 @@
                     android:textSize="15sp"
                     app:layout_constraintHorizontal_weight="1"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"></TextView>
+                    app:layout_constraintTop_toTopOf="parent"/>
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/dangerDescriptionText"
@@ -167,9 +169,9 @@
                     android:textColor="@color/text"
                     android:textSize="15sp"
                     app:layout_constraintHorizontal_weight="1"
-                    app:layout_constraintLeft_toRightOf="@id/dangerDescriptionLable"
+                    app:layout_constraintLeft_toRightOf="@id/dangerDescriptionLabel"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/dangerDescriptionLable"></androidx.appcompat.widget.AppCompatEditText>
+                    app:layout_constraintTop_toTopOf="@id/dangerDescriptionLabel"/>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -238,7 +240,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintHorizontal_weight="1"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"></TextView>
+                    app:layout_constraintTop_toTopOf="parent"/>
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/dangerLimitText"
@@ -254,7 +256,7 @@
                     app:layout_constraintHorizontal_weight="1"
                     app:layout_constraintLeft_toRightOf="@id/dangerLimitLable"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/dangerLimitLable"></androidx.appcompat.widget.AppCompatEditText>
+                    app:layout_constraintTop_toTopOf="@id/dangerLimitLable"/>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
