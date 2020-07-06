@@ -26,7 +26,7 @@ public class JsonUtils implements Serializable {
         //反序列化为T对象时,忽略属性后缀冗余的解析
         MAPPER.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         try {
-            MAPPER.readValue(jsonData, dataType);
+            return MAPPER.readValue(jsonData, dataType);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }

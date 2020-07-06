@@ -1,6 +1,10 @@
 package com.example.safe.util;
 
-public class Result {
+import java.io.Serializable;
+
+public class Result implements Serializable {
+    private static final long serialVersionUID = 2627220709786748205L;
+
     private Integer status;
     private String msg;
     private Object data;

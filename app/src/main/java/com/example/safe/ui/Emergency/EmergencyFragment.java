@@ -19,6 +19,7 @@ import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
 import com.example.safe.R;
+import com.example.safe.entity.DangerEntity;
 import com.example.safe.util.JsonUtils;
 import com.example.safe.util.Result;
 import com.example.safe.vo.DangerVo;
@@ -122,7 +123,11 @@ public class EmergencyFragment extends Fragment {
                 if (response.isSuccessful()){
 //                    Log.e("dataJson", response.body().string());
                     Result result = JsonUtils.jsonToObject(response.body().string(), Result.class);
-                    Log.e("data", result.getData().toString());
+                    Log.e("data", result.toString());
+                    List<DangerVo> list = JsonUtils.jsonToList(
+                            JsonUtils.objectToJson(result.getData()),
+                                DangerVo.class);
+                    Log.e("data1", list.get(0).toString());
                 }
             }
         });
