@@ -9,12 +9,14 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.safe.R;
 import com.example.safe.entity.EnterpriseEntity;
+import com.example.safe.util.Result;
 import com.example.safe.vo.RectificationPhotoVo;
 
 import org.json.JSONException;
-import org.json.JSONObject;
+
 
 import java.io.IOException;
 
@@ -45,18 +47,14 @@ public class EnterPriseFragment extends Fragment {
             }
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                if(response.isSuccessful()){
-//                    Log.d("kwwl","获取数据成功了");
-                    Log.d("kwwl","response.code()=="+response.code());
-//                    Log.d("kwwl","response.body().string()=="+response.body().string());
-                    try {
-                        JSONObject jsonData = new JSONObject(response.body().string());
-                        Log.d("kwwl",jsonData.get("data").toString());
-                        EnterpriseEntity result = (EnterpriseEntity)jsonData.get("data");
-                        Log.d("kwwl", "data" + result.toString());
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                if(response.isSuccessful()) {
+                    String json=response.body().string();
+                    Log.d("kwwl", "data:" + json);
+                    Result result = JSONObject.parseObject(json, Result.class);
+//                    EnterpriseEntity inf=JSON.toJavaObject(userJson,User.class);;
+                    Log.d("kwwl", "data:" + result.getData().toString());
+                    EnterpriseEntity inf=JSONObject.parseObject(result.getData().toString(),EnterpriseEntity.class);
+                    Log.d("kwwl", "data:" + inf.getId());
                 }
             }
         });

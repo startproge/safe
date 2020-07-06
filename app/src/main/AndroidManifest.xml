@@ -19,9 +19,10 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:networkSecurityConfig="@xml/network"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".ui.Danger.DangerActivity"></activity>
+        <activity android:name=".ui.Danger.DangerActivity"/>
         <activity android:name=".ui.HeadOfSafety.HeadOfSafetyActivity" />
         <activity android:name=".ui.SecurityAdmin.SecurityAdminActivity" />
 

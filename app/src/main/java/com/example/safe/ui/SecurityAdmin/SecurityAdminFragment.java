@@ -25,7 +25,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.safe.R;
 import com.example.safe.util.Result;
-import com.example.safe.vo.RectificationPhotoVo;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
@@ -162,9 +161,7 @@ public class SecurityAdminFragment extends Fragment {
                         Log.d("kwwl", "response.code()==" + response.code());
                         Log.d("kwwl", "response.body().string()==" + response.body().toString());
                         try {
-                            JSONObject jsonData = new JSONObject(response.body().string());
-                            RectificationPhotoVo result = (RectificationPhotoVo)jsonData.get("data");
-                            Log.d("kwwl", "data" + result.toString());
+                            JSONObject jsonData = new JSONObject(response.body().toString());
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

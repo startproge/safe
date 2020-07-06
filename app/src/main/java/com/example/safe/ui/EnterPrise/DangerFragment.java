@@ -3,44 +3,30 @@ package com.example.safe.ui.EnterPrise;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.safe.R;
-import com.example.safe.form.dangerForm;
+import com.example.safe.form.DangerForm;
 import com.example.safe.ui.Danger.DangerActivity;
-import com.example.safe.vo.DangerVo;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 public class DangerFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private DangerAdapter adapter;
-    private List<dangerForm> dangerList;
+    private String urlStr = "http://47.98.229.17:8002/blm";
+    private List<DangerForm> dangerList;
     private DangerAdapter dangerAdapter;
 
 
@@ -57,61 +43,33 @@ public class DangerFragment extends Fragment {
             startActivity(intent);
         });
 
-        getDangerList();
-
         return root;
     }
 
     private void initData() {
         dangerList=new ArrayList<>();
-        dangerList.add(new dangerForm(1,"风险源","机械安全","未整改",20));
-        dangerList.add(new dangerForm(1,"风险源","烟花爆竹","未整改",20));
-        dangerList.add(new dangerForm(1,"风险源","冶金类","未整改",20));
-        dangerList.add(new dangerForm(1,"风险源","危险化学品管理","未整改",20));
-        dangerList.add(new dangerForm(1,"风险源","机械安全","未整改",20));
-        dangerList.add(new dangerForm(1,"风险源","烟花爆竹","未整改",20));
-        dangerList.add(new dangerForm(1,"风险源","冶金类","未整改",20));
-        dangerList.add(new dangerForm(1,"风险源","危险化学品管理","未整改",20));
-        dangerList.add(new dangerForm(1,"风险源","机械安全","未整改",20));
-        dangerList.add(new dangerForm(1,"风险源","烟花爆竹","未整改",20));
-        dangerList.add(new dangerForm(1,"风险源","冶金类","未整改",20));
-        dangerList.add(new dangerForm(1,"风险源","危险化学品管理","未整改",20));
-    }
-
-    private List<DangerVo> getDangerList(){
-        Log.e("0", "getDangerList");
-        OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder()
-                .url("http://localhost:8088/term/dangers/1")
-                .method("GET", null)
-                .build();
-        Call call = client.newCall(request);
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                Log.e("danger调用接口失败", Objects.requireNonNull(e.getMessage()));
-            }
-
-            @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) {
-                if (response.isSuccessful())
-                    Log.e("1", "call success");
-                Log.e("response", response.toString());
-            }
-        });
-
-
-        return null;
+        dangerList.add(new DangerForm(1,"风险源","机械安全","未整改",20));
+        dangerList.add(new DangerForm(1,"风险源","烟花爆竹","未整改",20));
+        dangerList.add(new DangerForm(1,"风险源","冶金类","未整改",20));
+        dangerList.add(new DangerForm(1,"风险源","危险化学品管理","未整改",20));
+        dangerList.add(new DangerForm(1,"风险源","机械安全","未整改",20));
+        dangerList.add(new DangerForm(1,"风险源","烟花爆竹","未整改",20));
+        dangerList.add(new DangerForm(1,"风险源","冶金类","未整改",20));
+        dangerList.add(new DangerForm(1,"风险源","危险化学品管理","未整改",20));
+        dangerList.add(new DangerForm(1,"风险源","机械安全","未整改",20));
+        dangerList.add(new DangerForm(1,"风险源","烟花爆竹","未整改",20));
+        dangerList.add(new DangerForm(1,"风险源","冶金类","未整改",20));
+        dangerList.add(new DangerForm(1,"风险源","危险化学品管理","未整改",20));
     }
 
 }
 
 class DangerAdapter extends RecyclerView.Adapter implements View.OnClickListener{
-    private List<dangerForm> dangerList;
+    private List<DangerForm> dangerList;
     private Context mContext;
     private DangerAdapter.OnRecycleItemClickListener onRecycleItemClickListener = null;
 
-    public DangerAdapter(List<dangerForm> dangerForms,Context context){
+    public DangerAdapter(List<DangerForm> dangerForms, Context context){
         this.dangerList=dangerForms;
         this.mContext=context;
     }
@@ -143,7 +101,7 @@ class DangerAdapter extends RecyclerView.Adapter implements View.OnClickListener
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         DangerViewHolder dangerViewHolder = (DangerViewHolder) holder;
-        dangerForm danger=dangerList.get(position);
+        DangerForm danger=dangerList.get(position);
         dangerViewHolder.dangerNameText.setText(danger.getRiskResource());
         dangerViewHolder.dangerTypeText.setText(danger.getDangerType());
         dangerViewHolder.dangerTimeLimitText.setText(""+danger.getDangerTimeLimit());
