@@ -23,6 +23,7 @@ import com.example.safe.ui.SecurityAdmin.SecurityAdminActivity;
 
 
 import org.jetbrains.annotations.NotNull;
+import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -97,14 +98,18 @@ public class LoginActivity extends AppCompatActivity {
 
     void Login(String userName, String passWord) {
         OkHttpClient client = new OkHttpClient();
+
         FormBody body = new FormBody.Builder()
                 .add("username",userName)
                 .add("password",passWord)
                 .build();
         Request request = new Request.Builder()
                 .url("http://10.0.2.2:8088/term/user/login")
+                .addHeader("Content-Type","application/json")
                 .post(body)
                 .build();
+
+        Log.e("kwwl",request.header("Content-Type"));
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, @NotNull IOException e) {

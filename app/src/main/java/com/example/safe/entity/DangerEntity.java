@@ -127,6 +127,25 @@ public class DangerEntity implements Serializable {
         this.pid3 = pid3;
     }
 
+    @Override
+    public String toString() {
+        return "DangerEntity{" +
+                "id=" + id +
+                ", type=" + type +
+                ", riskSource='" + riskSource + '\'' +
+                ", level=" + level +
+                ", description='" + description + '\'' +
+                ", measure='" + measure + '\'' +
+                ", timeLimit=" + timeLimit +
+                ", uid=" + uid +
+                ", createDate=" + createDate +
+                ", pid1=" + pid1 +
+                ", pid2=" + pid2 +
+                ", pid3=" + pid3 +
+                ", dangerStatus=" + dangerStatus +
+                '}';
+    }
+
     public Integer getDangerStatus() {
         return dangerStatus;
     }
@@ -134,4 +153,6 @@ public class DangerEntity implements Serializable {
     public void setDangerStatus(Integer dangerStatus) {
         this.dangerStatus = dangerStatus;
     }
+
+
 }

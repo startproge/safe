@@ -25,7 +25,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/riskSourceLable"
+                android:id="@+id/riskSourceLabel"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -35,7 +35,7 @@
                 android:textSize="15sp"
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"></TextView>
+                app:layout_constraintTop_toTopOf="parent"/>
             <TextView
                 android:id="@+id/riskSourceText"
                 android:layout_width="0dp"
@@ -48,9 +48,9 @@
                 android:textColor="@color/text"
                 android:textSize="15sp"
                 app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintLeft_toRightOf="@id/riskSourceLable"
+                app:layout_constraintLeft_toRightOf="@id/riskSourceLabel"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@id/riskSourceLable">
+                app:layout_constraintTop_toTopOf="@id/riskSourceLabel">
 
             </TextView>
 
@@ -70,7 +70,7 @@
             app:layout_constraintTop_toBottomOf="@+id/riskSourceLayout">
 
             <TextView
-                android:id="@+id/dangerTypeLable"
+                android:id="@+id/dangerTypeLabel"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -80,7 +80,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"></TextView>
+                app:layout_constraintTop_toTopOf="parent"/>
             <TextView
                 android:id="@+id/dangerTypeText"
                 android:layout_width="0dp"
@@ -93,9 +93,9 @@
                 android:textSize="15sp"
                 android:text="123456"
                 app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintLeft_toRightOf="@id/dangerTypeLable"
+                app:layout_constraintLeft_toRightOf="@id/dangerTypeLabel"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@id/dangerTypeLable">
+                app:layout_constraintTop_toTopOf="@id/dangerTypeLabel">
 
             </TextView>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -107,7 +107,7 @@
             app:layout_constraintTop_toBottomOf="@+id/dangerTypeLayout">
 
             <TextView
-                android:id="@+id/dangerLevelLable"
+                android:id="@+id/dangerLevelLabel"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -117,7 +117,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"></TextView>
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
                 android:id="@+id/dangerLevelText"
@@ -131,9 +131,9 @@
                 android:textColor="@color/text"
                 android:textSize="15sp"
                 app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintLeft_toRightOf="@id/dangerLevelLable"
+                app:layout_constraintLeft_toRightOf="@id/dangerLevelLabel"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@id/dangerLevelLable">
+                app:layout_constraintTop_toTopOf="@id/dangerLevelLabel">
 
             </TextView>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -145,7 +145,7 @@
             app:layout_constraintTop_toBottomOf="@+id/dangerLevelLayout">
 
             <TextView
-                android:id="@+id/dangerDescriptionLable"
+                android:id="@+id/dangerDescriptionLabel"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -155,7 +155,7 @@
                 android:textSize="15sp"
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"></TextView>
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
                 android:id="@+id/dangerDescriptionText"
@@ -169,15 +169,15 @@
                 android:textSize="15sp"
                 android:text="123456"
                 app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintLeft_toRightOf="@id/dangerDescriptionLable"
+                app:layout_constraintLeft_toRightOf="@id/dangerDescriptionLabel"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@id/dangerDescriptionLable"></TextView>
+                app:layout_constraintTop_toTopOf="@id/dangerDescriptionLabel"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
                 android:layout_marginTop="5dp"
-                app:layout_constraintTop_toBottomOf="@+id/dangerDescriptionText"></androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintTop_toBottomOf="@+id/dangerDescriptionText"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -187,7 +187,7 @@
             app:layout_constraintTop_toBottomOf="@+id/dangerDescriptionLayout">
 
             <TextView
-                android:id="@+id/dangerMeasureLable"
+                android:id="@+id/dangerMeasureLabel"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -197,7 +197,7 @@
                 android:textSize="15sp"
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"></TextView>
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
                 android:id="@+id/dangerMeasureText"
@@ -211,15 +211,15 @@
                 android:textColor="@color/text"
                 android:textSize="15sp"
                 app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintLeft_toRightOf="@id/dangerMeasureLable"
+                app:layout_constraintLeft_toRightOf="@id/dangerMeasureLabel"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@id/dangerMeasureLable"></TextView>
+                app:layout_constraintTop_toTopOf="@id/dangerMeasureLabel"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
                 android:layout_marginTop="5dp"
-                app:layout_constraintTop_toBottomOf="@+id/dangerMeasureText"></androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintTop_toBottomOf="@+id/dangerMeasureText"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -229,7 +229,7 @@
             app:layout_constraintTop_toBottomOf="@+id/dangerMeasureLayout">
 
             <TextView
-                android:id="@+id/dangerLimitLable"
+                android:id="@+id/dangerLimitLabel"
                 android:layout_width="80dp"
                 android:layout_height="20dp"
                 android:layout_marginLeft="10dp"
@@ -239,7 +239,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"></TextView>
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
                 android:id="@+id/dangerLimitText"
@@ -253,9 +253,9 @@
                 android:textColor="@color/text"
                 android:textSize="15sp"
                 app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintLeft_toRightOf="@id/dangerLimitLable"
+                app:layout_constraintLeft_toRightOf="@id/dangerLimitLabel"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@id/dangerLimitLable"></TextView>
+                app:layout_constraintTop_toTopOf="@id/dangerLimitLabel"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -272,7 +272,7 @@
             app:layout_constraintTop_toBottomOf="@+id/dangerLimitLayout">
 
             <TextView
-                android:id="@+id/dangerImageLable"
+                android:id="@+id/dangerImageLabel"
                 android:layout_width="80dp"
                 android:layout_height="20dp"
                 android:text="图片"
@@ -290,8 +290,8 @@
                 android:id="@+id/imageList"
                 android:layout_width="0dp"
                 android:layout_height="80dp"
-                app:layout_constraintTop_toTopOf="@+id/dangerImageLable"
-                app:layout_constraintLeft_toRightOf="@id/dangerImageLable"
+                app:layout_constraintTop_toTopOf="@+id/dangerImageLabel"
+                app:layout_constraintLeft_toRightOf="@id/dangerImageLabel"
                 app:layout_constraintRight_toRightOf="parent"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
@@ -304,7 +304,7 @@
                     android:layout_height="60dp"
                     android:background="@drawable/ic_home"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"></ImageView>
+                    app:layout_constraintTop_toTopOf="parent"/>
                 <ImageView
                     android:id="@+id/image2"
                     android:layout_width="60dp"
