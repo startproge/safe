@@ -46,9 +46,10 @@ public class EnterPriseFragment extends Fragment {
         telephoneText=root.findViewById(R.id.telephoneText);
         addressText=root.findViewById(R.id.addressText);
         positionText=root.findViewById(R.id.positionText);
-        getEnterPriseInf();
+        getEnterPriseInf(1);
         return root;
     }
+
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
@@ -67,10 +68,10 @@ public class EnterPriseFragment extends Fragment {
         }
     };
 
-    private void getEnterPriseInf() {
+    private void getEnterPriseInf(int id) {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url("http://10.0.2.2:8088/term/enterprise/1")
+                .url("http://10.0.2.2:8088/term/enterprise/"+id)
                 .build();
         client.newCall(request).enqueue(new Callback() {
             @Override
