@@ -1,13 +1,13 @@
 package com.example.safe.form;
 
-public class dangerForm {
+public class DangerForm {
     private int dangerId;
     private String riskResource;
     private String dangerType;
     private String dangerStatus;
     private int dangerTimeLimit;
 
-    public dangerForm(int dangerId, String riskResource, String dangerType, String dangerStatus, int dangerTimeLimit) {
+    public DangerForm(int dangerId, String riskResource, String dangerType, String dangerStatus, int dangerTimeLimit) {
         this.dangerId = dangerId;
         this.riskResource = riskResource;
         this.dangerType = dangerType;
