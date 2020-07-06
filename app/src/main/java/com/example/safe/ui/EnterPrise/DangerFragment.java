@@ -3,6 +3,7 @@ package com.example.safe.ui.EnterPrise;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,17 +18,29 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.safe.R;
 import com.example.safe.form.DangerForm;
 import com.example.safe.ui.Danger.DangerActivity;
+import com.example.safe.util.JsonUtils;
+import com.example.safe.util.Result;
+import com.example.safe.vo.DangerVo;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class DangerFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private DangerAdapter adapter;
     private String urlStr = "http://47.98.229.17:8002/blm";
-    private List<DangerForm> dangerList;
-    private DangerAdapter dangerAdapter;
+    private List<DangerVo> dangerList;
 
 
     public View onCreateView(@NonNull final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,28 +61,47 @@ public class DangerFragment extends Fragment {
 
     private void initData() {
         dangerList=new ArrayList<>();
-        dangerList.add(new DangerForm(1,"风险源","机械安全","未整改",20));
-        dangerList.add(new DangerForm(1,"风险源","烟花爆竹","未整改",20));
-        dangerList.add(new DangerForm(1,"风险源","冶金类","未整改",20));
-        dangerList.add(new DangerForm(1,"风险源","危险化学品管理","未整改",20));
-        dangerList.add(new DangerForm(1,"风险源","机械安全","未整改",20));
-        dangerList.add(new DangerForm(1,"风险源","烟花爆竹","未整改",20));
-        dangerList.add(new DangerForm(1,"风险源","冶金类","未整改",20));
-        dangerList.add(new DangerForm(1,"风险源","危险化学品管理","未整改",20));
-        dangerList.add(new DangerForm(1,"风险源","机械安全","未整改",20));
-        dangerList.add(new DangerForm(1,"风险源","烟花爆竹","未整改",20));
-        dangerList.add(new DangerForm(1,"风险源","冶金类","未整改",20));
-        dangerList.add(new DangerForm(1,"风险源","危险化学品管理","未整改",20));
     }
 
+    private List<DangerVo> getDangerList(int uid) {
+        Log.e("0", "getDangerList");
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url("http://192.168.43.233:8088/term/dangers/"+uid)
+                .method("GET", null)
+                .build();
+        Call call = client.newCall(request);
+        Log.e("1", "emergency");
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                Log.e("danger调用接口失败", Objects.requireNonNull(e.getMessage()));
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                if (response.isSuccessful()){
+//                    Log.e("dataJson", response.body().string());
+                    Result result = JsonUtils.jsonToObject(response.body().string(), Result.class);
+                    Log.e("data", result.toString());
+                    List<DangerVo> list = JsonUtils.jsonToList(
+                            JsonUtils.objectToJson(result.getData()),
+                            DangerVo.class);
+                    Log.e("data1", list.get(0).toString());
+                }
+            }
+        });
+
+        return null;
+    }
 }
 
 class DangerAdapter extends RecyclerView.Adapter implements View.OnClickListener{
-    private List<DangerForm> dangerList;
+    private List<DangerVo> dangerList;
     private Context mContext;
     private DangerAdapter.OnRecycleItemClickListener onRecycleItemClickListener = null;
 
-    public DangerAdapter(List<DangerForm> dangerForms, Context context){
+    public DangerAdapter(List<DangerVo> dangerForms, Context context){
         this.dangerList=dangerForms;
         this.mContext=context;
     }
@@ -101,11 +133,11 @@ class DangerAdapter extends RecyclerView.Adapter implements View.OnClickListener
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         DangerViewHolder dangerViewHolder = (DangerViewHolder) holder;
-        DangerForm danger=dangerList.get(position);
-        dangerViewHolder.dangerNameText.setText(danger.getRiskResource());
-        dangerViewHolder.dangerTypeText.setText(danger.getDangerType());
-        dangerViewHolder.dangerTimeLimitText.setText(""+danger.getDangerTimeLimit());
-        dangerViewHolder.dangerStatusText.setText(danger.getDangerStatus());
+        DangerVo danger=dangerList.get(position);
+        dangerViewHolder.dangerNameText.setText(danger.getRiskSource());
+        dangerViewHolder.dangerTypeText.setText(danger.getType());
+        dangerViewHolder.dangerTimeLimitText.setText(""+danger.getTimeLevel());
+        dangerViewHolder.dangerStatusText.setText(danger.getStatus());
         dangerViewHolder.itemView.setTag(position);
     }
 
