@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="dangerType">
+        <item>机械安全</item>
+        <item>烟花爆竹</item>
+        <item>冶金类</item>
+        <item>危险化学品管理</item>
+    </string-array>
+    <string-array name="dangerLevel">
+        <item>重点</item>
+        <item>较大</item>
+        <item>一般</item>
+    </string-array>
+    <string-array name="rectificationType">
+        <item>完成整改</item>
+        <item>已管控</item>
+    </string-array>
+    <string-array name="acceptanceType">
+        <item>合格</item>
+        <item>不合格</item>
+    </string-array>
+</resources>
