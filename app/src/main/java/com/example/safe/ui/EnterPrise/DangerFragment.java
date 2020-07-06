@@ -21,15 +21,25 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.safe.R;
 import com.example.safe.form.dangerForm;
 import com.example.safe.ui.Danger.DangerActivity;
+import com.example.safe.vo.DangerVo;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class DangerFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private DangerAdapter adapter;
-    private String urlStr = "http://47.98.229.17:8002/blm";
     private List<dangerForm> dangerList;
     private DangerAdapter dangerAdapter;
 
@@ -46,6 +56,9 @@ public class DangerFragment extends Fragment {
             Intent intent=new Intent(getActivity(), DangerActivity.class);
             startActivity(intent);
         });
+
+        getDangerList();
+
         return root;
     }
 
@@ -63,6 +76,32 @@ public class DangerFragment extends Fragment {
         dangerList.add(new dangerForm(1,"风险源","烟花爆竹","未整改",20));
         dangerList.add(new dangerForm(1,"风险源","冶金类","未整改",20));
         dangerList.add(new dangerForm(1,"风险源","危险化学品管理","未整改",20));
+    }
+
+    private List<DangerVo> getDangerList(){
+        Log.e("0", "getDangerList");
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url("http://localhost:8088/term/dangers/1")
+                .method("GET", null)
+                .build();
+        Call call = client.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                Log.e("danger调用接口失败", Objects.requireNonNull(e.getMessage()));
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) {
+                if (response.isSuccessful())
+                    Log.e("1", "call success");
+                Log.e("response", response.toString());
+            }
+        });
+
+
+        return null;
     }
 
 }
