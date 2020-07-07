@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -20,9 +21,13 @@ import com.example.safe.R;
 import com.example.safe.ui.Emergency.EmergencyActivity;
 import com.example.safe.ui.HeadOfSafety.HeadOfSafetyActivity;
 import com.example.safe.ui.SecurityAdmin.SecurityAdminActivity;
+import com.example.safe.util.JsonUtils;
+import com.example.safe.util.Result;
+import com.example.safe.vo.DangerVo;
 
 
 import org.jetbrains.annotations.NotNull;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -32,6 +37,7 @@ import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class LoginActivity extends AppCompatActivity {
@@ -39,15 +45,15 @@ public class LoginActivity extends AppCompatActivity {
     private EditText edtUser;
     private EditText edtPasswd;
     private RadioGroup types;
-
-
+    private SharedPreferences pref;
+    private String token;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        pref = getSharedPreferences("storage", MODE_PRIVATE);
         toolbar = findViewById(R.id.tool_bar_login);
         toolbar.setNavigationOnClickListener(v -> finish());
-
         edtUser = findViewById(R.id.edt_user);
         edtPasswd = findViewById(R.id.edt_passwd);
         types=findViewById(R.id.RadioGroup);
@@ -76,6 +82,9 @@ public class LoginActivity extends AppCompatActivity {
             switch (msg.what) {
                 case 1:
                     String type=getCheckedItem();
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("token",token);
+                    editor.apply();
                     if (type.equals("应急局人员")) {
                         Intent  intent = new Intent(LoginActivity.this, EmergencyActivity.class);
                         startActivity(intent);
@@ -97,35 +106,43 @@ public class LoginActivity extends AppCompatActivity {
     };
 
     void Login(String userName, String passWord) {
-        OkHttpClient client = new OkHttpClient();
-
-        FormBody body = new FormBody.Builder()
-                .add("username",userName)
-                .add("password",passWord)
-                .build();
-        Request request = new Request.Builder()
-                .url("http://10.0.2.2:8088/term/user/login")
-                .addHeader("Content-Type","application/json")
-                .post(body)
-                .build();
-
-        Log.e("kwwl",request.header("Content-Type"));
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, @NotNull IOException e) {
-                Log.e("kwwl",e.getMessage());
-            }
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                if(response.isSuccessful()) {
-                    String result = response.body().string();
-                    Log.e("kwwl",result);
-                    Message message = new Message();
-                    message.what=1;
-                    handler.sendMessage(message);
+        try {
+            OkHttpClient client = new OkHttpClient();
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("username", userName);
+            jsonObject.put("password",passWord);
+            String data = jsonObject.toString();
+            RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json;charset=UTF-8"), data);
+            Request request = new Request.Builder()
+                    .url("http://10.0.2.2:8088/term/user/login")
+                    .post(body)
+                    .build();
+            client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, @NotNull IOException e) {
+                    Log.e("Login调用失败", e.getMessage());
                 }
-            }
-        });
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    if (response.isSuccessful()) {
+                        Result result = JsonUtils.jsonToObject(response.body().string(), Result.class);
+                        if(result.getStatus()==200){
+                            token= JsonUtils.jsonToObject(
+                                    JsonUtils.objectToJson(result.getData()),
+                                    String.class);
+                            Log.e("token",token);
+                            Message message = new Message();
+                            message.what = 1;
+                            handler.sendMessage(message);
+                        }
+                    }
+                }
+            });
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     private String getCheckedItem(){

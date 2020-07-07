@@ -10,6 +10,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import android.Manifest;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +30,7 @@ public class EmergencyActivity extends AppCompatActivity {
     private static final int PERMISSON_REQUESTCODE = 0;
     private boolean isNeedCheck = true;
     private Toolbar toolbar;
+    private SharedPreferences pref;
 
     private AMapLocationClient mLocationClient = null;
     //声明定位回调监听器
@@ -48,7 +50,13 @@ public class EmergencyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emergency);
-
+        pref = getSharedPreferences("storage", MODE_PRIVATE);
+        String token=pref.getString("token",null);
+        if(token == null){
+            finish();
+        }else{
+            Log.e("token",token);
+        }
         toolbar = findViewById(R.id.tool_bar_main);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);
