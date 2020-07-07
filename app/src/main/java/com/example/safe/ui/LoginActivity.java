@@ -41,6 +41,8 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class LoginActivity extends AppCompatActivity {
+    private String url="10.0.2.2:8088";
+//    private String url="192.168.43.233:8088";
     private Toolbar toolbar;
     private EditText edtUser;
     private EditText edtPasswd;
@@ -117,7 +119,7 @@ public class LoginActivity extends AppCompatActivity {
             String data = jsonObject.toString();
             RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json;charset=UTF-8"), data);
             Request request = new Request.Builder()
-                    .url("http://10.0.2.2:8088/term/user/login")
+                    .url("http://"+url+"/term/user/login")
                     .post(body)
                     .build();
             client.newCall(request).enqueue(new Callback() {

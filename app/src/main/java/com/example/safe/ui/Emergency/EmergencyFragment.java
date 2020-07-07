@@ -50,6 +50,8 @@ import static android.app.Activity.RESULT_OK;
 public class EmergencyFragment extends Fragment {
     private static final int TAKE_PHOTO = 1;
     private static final int CHOOSE_PHOTO = 2;
+    private String url="10.0.2.2:8088";
+//    private String url="192.168.43.233:8088";
 
     private final MediaType MEDIA_TYPE_JSON = MediaType.parse("application/json;charset=UTF-8");
     private final MediaType MEDIA_TYPE_PNG = MediaType.parse("image/png");
@@ -152,7 +154,7 @@ public class EmergencyFragment extends Fragment {
         OkHttpClient client = new OkHttpClient();
         RequestBody requestBody = RequestBody.create(JsonUtils.objectToJson(dangerForm), MEDIA_TYPE_JSON);
         Request request = new Request.Builder()
-                .url("http://192.168.43.233:8088/term/danger")
+                .url("http://"+url+"/term/danger")
                 .method("POST", requestBody)
                 .build();
         Call call = client.newCall(request);
@@ -184,7 +186,7 @@ public class EmergencyFragment extends Fragment {
                 .post(builder.build())
                 .build();*/
         Request request = new Request.Builder()
-                .url("http://192.168.43.233:8088/term/photo/upload/1")
+                .url("http://"+url+"/term/photo/upload/1")
                 .method("POST", builder.build())
                 .build();
         okHttpClient.newCall(request).enqueue(new Callback() {
