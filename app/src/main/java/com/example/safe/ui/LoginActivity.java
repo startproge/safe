@@ -18,11 +18,13 @@ import android.widget.RadioGroup;
 
 import com.example.safe.R;
 
+import com.example.safe.entity.UserEntity;
 import com.example.safe.ui.Emergency.EmergencyActivity;
 import com.example.safe.ui.HeadOfSafety.HeadOfSafetyActivity;
 import com.example.safe.ui.SecurityAdmin.SecurityAdminActivity;
 import com.example.safe.util.JsonUtils;
 import com.example.safe.util.Result;
+import com.example.safe.util.UrlUtil;
 import com.example.safe.vo.DangerVo;
 
 
@@ -48,12 +50,15 @@ public class LoginActivity extends AppCompatActivity {
     private EditText edtPasswd;
     private RadioGroup types;
     private SharedPreferences pref;
+    private SharedPreferences.Editor editor ;
     private String token;
+    private UserEntity userEntity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         pref = getSharedPreferences("storage", MODE_PRIVATE);
+        editor=pref.edit();
         toolbar = findViewById(R.id.tool_bar_login);
         toolbar.setNavigationOnClickListener(v -> finish());
         edtUser = findViewById(R.id.edt_user);
@@ -67,10 +72,10 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     String userName=edtUser.getText().toString();
                     String passWord=edtPasswd.getText().toString();
-//                    Login(userName,passWord);
-                    Message message = new Message();
-                    message.what=1;
-                    handler.sendMessage(message);
+                    Login(userName,passWord);
+//                    Message message = new Message();
+//                    message.what=1;
+//                    handler.sendMessage(message);
                 } catch (NumberFormatException e) {
                     new AlertDialog.Builder(LoginActivity.this).setTitle("提示")
                         .setMessage("账号格式错误(•_•)")
@@ -86,10 +91,14 @@ public class LoginActivity extends AppCompatActivity {
         public void handleMessage(@NonNull Message msg) {
             switch (msg.what) {
                 case 1:
-                    String type=getCheckedItem();
-                    SharedPreferences.Editor editor = pref.edit();
                     editor.putString("token",token);
                     editor.apply();
+                    getUserInf(token);
+                    break;
+                case 2:
+                    editor.putInt("uid",userEntity.getId());
+                    editor.apply();
+                    String type=getCheckedItem();
                     if (type.equals("应急局人员")) {
                         Intent  intent = new Intent(LoginActivity.this, EmergencyActivity.class);
                         startActivity(intent);
@@ -110,7 +119,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     };
 
-    void Login(String userName, String passWord) {
+    private void Login(String userName, String passWord) {
         try {
             OkHttpClient client = new OkHttpClient();
             JSONObject jsonObject = new JSONObject();
@@ -119,7 +128,7 @@ public class LoginActivity extends AppCompatActivity {
             String data = jsonObject.toString();
             RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json;charset=UTF-8"), data);
             Request request = new Request.Builder()
-                    .url("http://"+url+"/term/user/login")
+                    .url("http://"+ UrlUtil.url +"/term/user/login")
                     .post(body)
                     .build();
             client.newCall(request).enqueue(new Callback() {
@@ -148,6 +157,37 @@ public class LoginActivity extends AppCompatActivity {
         catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    private void getUserInf(String token){
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url("http://"+UrlUtil.url+"/term/user")
+                .addHeader("token",token)
+                .get()
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, @NotNull IOException e) {
+                Log.e("GetUserInf调用失败", e.getMessage());
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    Result result = JsonUtils.jsonToObject(response.body().string(), Result.class);
+                    if(result.getStatus()==200){
+                       userEntity= JsonUtils.jsonToObject(
+                                JsonUtils.objectToJson(result.getData()),
+                                UserEntity.class);
+                        Log.e("getUserInf",userEntity.getUsername());
+                            Message message = new Message();
+                            message.what = 2;
+                            handler.sendMessage(message);
+                    }
+                }
+            }
+        });
     }
 
     private String getCheckedItem(){

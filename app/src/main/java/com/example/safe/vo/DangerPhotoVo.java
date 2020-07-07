@@ -24,4 +24,12 @@ public class DangerPhotoVo {
     public void setPhotoEntityList(List<PhotoEntity> photoEntityList) {
         this.photoEntityList = photoEntityList;
     }
+
+    @Override
+    public String toString() {
+        return "DangerPhotoVo{" +
+                "dangerEntity=" + dangerEntity +
+                ", photoEntityList=" + photoEntityList +
+                '}';
+    }
 }

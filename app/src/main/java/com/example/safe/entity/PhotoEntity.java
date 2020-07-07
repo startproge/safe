@@ -57,4 +57,15 @@ public class PhotoEntity implements Serializable {
     public void setPosition(String position) {
         this.position = position;
     }
+
+    @Override
+    public String toString() {
+        return "PhotoEntity{" +
+                "id=" + id +
+                ", url='" + url + '\'' +
+                ", createDate=" + createDate +
+                ", uid=" + uid +
+                ", position='" + position + '\'' +
+                '}';
+    }
 }

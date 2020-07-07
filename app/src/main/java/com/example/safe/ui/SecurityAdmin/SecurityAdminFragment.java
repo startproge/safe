@@ -139,7 +139,6 @@ public class SecurityAdminFragment extends Fragment {
             case TAKE_PHOTO:
                 if (resultCode == RESULT_OK) {
                     try {
-                        //将拍摄的照片显示出来
                         Bitmap bitmap = BitmapFactory.decodeStream(getContext().getContentResolver().openInputStream(imageUri1));
                         image1.setImageBitmap(bitmap);
                     } catch (FileNotFoundException e) {

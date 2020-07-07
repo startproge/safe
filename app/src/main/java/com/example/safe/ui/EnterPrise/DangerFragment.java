@@ -21,6 +21,7 @@ import com.example.safe.R;
 import com.example.safe.ui.Danger.DangerActivity;
 import com.example.safe.util.JsonUtils;
 import com.example.safe.util.Result;
+import com.example.safe.util.UrlUtil;
 import com.example.safe.vo.DangerVo;
 
 import org.jetbrains.annotations.NotNull;
@@ -65,7 +66,7 @@ public class DangerFragment extends Fragment {
         Log.e("0", "getDangerList");
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url("http://10.0.2.2:8088/term/dangers/"+uid)
+                .url("http://"+ UrlUtil.url +"/term/dangers/"+uid)
                 .method("GET", null)
                 .build();
         Call call = client.newCall(request);

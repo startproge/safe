@@ -16,6 +16,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.safe.R;
 import com.example.safe.entity.EnterpriseEntity;
 import com.example.safe.util.Result;
+import com.example.safe.util.UrlUtil;
 
 
 import org.jetbrains.annotations.NotNull;
@@ -71,7 +72,7 @@ public class EnterPriseFragment extends Fragment {
     private void getEnterPriseInf(int id) {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url("http://10.0.2.2:8088/term/enterprise/"+id)
+                .url("http://"+ UrlUtil.url +"/term/enterprise/"+id)
                 .build();
         client.newCall(request).enqueue(new Callback() {
             @Override
