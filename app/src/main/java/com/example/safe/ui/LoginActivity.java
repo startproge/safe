@@ -58,7 +58,10 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     String userName=edtUser.getText().toString();
                     String passWord=edtPasswd.getText().toString();
-                    Login(userName,passWord);
+//                    Login(userName,passWord);
+                    Message message = new Message();
+                    message.what=1;
+                    handler.sendMessage(message);
                 } catch (NumberFormatException e) {
                     new AlertDialog.Builder(LoginActivity.this).setTitle("提示")
                         .setMessage("账号格式错误(•_•)")
