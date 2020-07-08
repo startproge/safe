@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.safe.ui.HeadOfSafety.HeadOfSafeFragment"
+        android:name="com.example.safe.ui.HeadOfSafety.HeadOfSafeDangerFragment"
         android:label="safe"
-        tools:layout="@layout/fragment_headofsafety" />
+        tools:layout="@layout/fragment_dangerquery" />
 
     <fragment
         android:id="@+id/navigation_order"

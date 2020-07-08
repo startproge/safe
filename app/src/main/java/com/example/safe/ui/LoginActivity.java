@@ -7,14 +7,18 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.example.safe.R;
 
@@ -56,6 +60,10 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.setStatusBarColor(Color.parseColor("#008dea"));
+        }
         setContentView(R.layout.activity_login);
         pref = getSharedPreferences("storage", MODE_PRIVATE);
         editor=pref.edit();
@@ -96,21 +104,34 @@ public class LoginActivity extends AppCompatActivity {
                     getUserInf(token);
                     break;
                 case 2:
-                    editor.putInt("uid",userEntity.getId());
-                    editor.apply();
-                    String type=getCheckedItem();
-                    if (type.equals("应急局人员")) {
+                    int type=userEntity.getType();
+                    String typeChosen=getCheckedItem();
+                    if (typeChosen.equals("应急局人员")&&type==1) {
+                        editor.putInt("uid",userEntity.getId());
+                        editor.putInt("type",userEntity.getType());
+                        editor.apply();
                         Intent  intent = new Intent(LoginActivity.this, EmergencyActivity.class);
                         startActivity(intent);
-                    }else if(type.equals("安全管理员")){
+                    }else if(typeChosen.equals("安全管理员")&&type==2){
+                        editor.putInt("uid",userEntity.getId());
+                        editor.putInt("type",userEntity.getType());
+                        editor.apply();
                         Intent  intent = new Intent(LoginActivity.this, SecurityAdminActivity.class);
                         startActivity(intent);
-                    }else if(type.equals("安全管理负责人")){
+                    }else if(typeChosen.equals("安全管理负责人")&&type==3){
+                        editor.putInt("uid",userEntity.getId());
+                        editor.putInt("type",userEntity.getType());
+                        editor.apply();
                         Intent  intent = new Intent(LoginActivity.this, SecurityAdminActivity.class);
                         startActivity(intent);
-                    }else if(type.equals("安全管理验收员")){
+                    }else if(typeChosen.equals("安全管理验收员")&&type==4){
+                        editor.putInt("uid",userEntity.getId());
+                        editor.putInt("type",userEntity.getType());
+                        editor.apply();
                         Intent  intent = new Intent(LoginActivity.this, HeadOfSafetyActivity.class);
                         startActivity(intent);
+                    }else{
+                        Toast.makeText(getApplicationContext(), "登录类型不匹配", Toast.LENGTH_SHORT).show();
                     }
                     break;
                 default:

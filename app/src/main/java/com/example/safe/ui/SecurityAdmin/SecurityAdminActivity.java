@@ -7,7 +7,10 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.Window;
 
 import com.example.safe.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -20,7 +23,10 @@ public class SecurityAdminActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_securityadmin);
-
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.setStatusBarColor(Color.parseColor("#008dea"));
+        }
         toolbar = findViewById(R.id.tool_bar_main);
         toolbar.setTitle("");
         setSupportActionBar(toolbar);

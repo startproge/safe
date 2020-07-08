@@ -5,10 +5,28 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical">
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_login"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tool_bar_login"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorDeepBlue"
+            app:navigationIcon="@drawable/ic_back"
+            app:title="整改验收"
+            app:titleTextColor="@color/colorWhite" />
+    </com.google.android.material.appbar.AppBarLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/app_bar_login"
         >
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"

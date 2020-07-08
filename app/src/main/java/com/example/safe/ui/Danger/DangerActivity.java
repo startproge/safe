@@ -2,12 +2,16 @@ package com.example.safe.ui.Danger;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -48,7 +52,14 @@ public class DangerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.setStatusBarColor(Color.parseColor("#008dea"));
+        }
         setContentView(R.layout.activity_danger);
+        Toolbar toolbar = findViewById(R.id.tool_bar_login);
+        toolbar.setNavigationOnClickListener(v -> finish());
+
         riskSourceText=findViewById(R.id.riskSourceText);
         dangerTypeText=findViewById(R.id.dangerTypeText);
         dangerLevelText=findViewById(R.id.dangerLevelText);

@@ -5,10 +5,28 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical">
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_login"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tool_bar_login"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorDeepBlue"
+            app:navigationIcon="@drawable/ic_back"
+            app:title="隐患整改"
+            app:titleTextColor="@color/colorWhite" />
+    </com.google.android.material.appbar.AppBarLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/app_bar_login"
         >
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
@@ -22,49 +40,49 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/rectificationPeopleLayout"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                app:layout_constraintTop_toTopOf="parent">
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                android:id="@+id/rectificationPeopleLayout"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="50dp"-->
+<!--                app:layout_constraintTop_toTopOf="parent">-->
 
-                <TextView
-                    android:id="@+id/rectificationPeopleLable"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="整改人"
-                    android:textColor="@color/text"
-                    android:textSize="15sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintHorizontal_weight="1"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"></TextView>
+<!--                <TextView-->
+<!--                    android:id="@+id/rectificationPeopleLable"-->
+<!--                    android:layout_width="80dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:text="整改人"-->
+<!--                    android:textColor="@color/text"-->
+<!--                    android:textSize="15sp"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintHorizontal_weight="1"-->
+<!--                    app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"></TextView>-->
 
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/rectificationPeopleText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@null"
-                    android:gravity="left"
-                    android:hint="请输入整改人"
-                    android:text=""
-                    android:textColor="@color/text"
-                    android:textSize="15sp"
-                    app:layout_constraintHorizontal_weight="1"
-                    app:layout_constraintLeft_toRightOf="@id/rectificationPeopleLable"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/rectificationPeopleLable">
-                </androidx.appcompat.widget.AppCompatEditText>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                <androidx.appcompat.widget.AppCompatEditText-->
+<!--                    android:id="@+id/rectificationPeopleText"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:layout_marginRight="10dp"-->
+<!--                    android:background="@null"-->
+<!--                    android:gravity="left"-->
+<!--                    android:hint="请输入整改人"-->
+<!--                    android:text=""-->
+<!--                    android:textColor="@color/text"-->
+<!--                    android:textSize="15sp"-->
+<!--                    app:layout_constraintHorizontal_weight="1"-->
+<!--                    app:layout_constraintLeft_toRightOf="@id/rectificationPeopleLable"-->
+<!--                    app:layout_constraintRight_toRightOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="@id/rectificationPeopleLable">-->
+<!--                </androidx.appcompat.widget.AppCompatEditText>-->
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/rectificationTypeLayout"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                app:layout_constraintTop_toBottomOf="@+id/rectificationPeopleLayout"
+                app:layout_constraintTop_toTopOf="parent"
                 >
 
                 <TextView
@@ -81,6 +99,7 @@
                     app:layout_constraintTop_toTopOf="parent"></TextView>
 
                 <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/rectificationTypeSpinner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -142,55 +161,55 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/rectificationTimeLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/rectificationMeasureLayout">
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                android:id="@+id/rectificationTimeLayout"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/rectificationMeasureLayout">-->
 
-                <TextView
-                    android:id="@+id/rectificationTimeLable"
-                    android:layout_width="80dp"
-                    android:layout_height="20dp"
-                    android:layout_marginLeft="10dp"
-                    android:text="整改日期"
-                    android:textColor="@color/text"
-                    android:textSize="15sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintHorizontal_weight="1"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"></TextView>
+<!--                <TextView-->
+<!--                    android:id="@+id/rectificationTimeLable"-->
+<!--                    android:layout_width="80dp"-->
+<!--                    android:layout_height="20dp"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:text="整改日期"-->
+<!--                    android:textColor="@color/text"-->
+<!--                    android:textSize="15sp"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintHorizontal_weight="1"-->
+<!--                    app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"></TextView>-->
 
-                <TextView
-                    android:id="@+id/rectificationTimeText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@null"
-                    android:gravity="left"
-                    android:hint="请选择整改日期"
-                    android:textColor="@color/text"
-                    android:textSize="15sp"
-                    app:layout_constraintHorizontal_weight="1"
-                    app:layout_constraintLeft_toRightOf="@id/rectificationTimeLable"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/rectificationTimeLable">
-                </TextView>
+<!--                <TextView-->
+<!--                    android:id="@+id/rectificationTimeText"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:layout_marginRight="10dp"-->
+<!--                    android:background="@null"-->
+<!--                    android:gravity="left"-->
+<!--                    android:hint="请选择整改日期"-->
+<!--                    android:textColor="@color/text"-->
+<!--                    android:textSize="15sp"-->
+<!--                    app:layout_constraintHorizontal_weight="1"-->
+<!--                    app:layout_constraintLeft_toRightOf="@id/rectificationTimeLable"-->
+<!--                    app:layout_constraintRight_toRightOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="@id/rectificationTimeLable">-->
+<!--                </TextView>-->
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:layout_marginTop="5dp"
-                    app:layout_constraintTop_toBottomOf="@+id/rectificationTimeText">
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="10dp"-->
+<!--                    android:layout_marginTop="5dp"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/rectificationTimeText">-->
+<!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/rectificationDocumentLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/rectificationTimeLayout">
+                app:layout_constraintTop_toBottomOf="@+id/rectificationMeasureLayout">
 
                 <TextView
                     android:id="@+id/rectificationDocumentLable"

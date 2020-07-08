@@ -41,6 +41,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.Emergency.EmergencyActivity" />
+        <activity android:name=".ui.SecurityAdmin.RectificationActivity" />
+        <activity android:name=".ui.HeadOfSafety.AcceptanceActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

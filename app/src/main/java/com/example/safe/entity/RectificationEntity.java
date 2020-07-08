@@ -107,4 +107,20 @@ public class RectificationEntity implements Serializable {
     public void setDid(Integer did) {
         this.did = did;
     }
+
+    @Override
+    public String toString() {
+        return "RectificationEntity{" +
+                "id=" + id +
+                ", type=" + type +
+                ", measure='" + measure + '\'' +
+                ", document='" + document + '\'' +
+                ", uid=" + uid +
+                ", createDate=" + createDate +
+                ", pid1=" + pid1 +
+                ", pid2=" + pid2 +
+                ", pid3=" + pid3 +
+                ", did=" + did +
+                '}';
+    }
 }

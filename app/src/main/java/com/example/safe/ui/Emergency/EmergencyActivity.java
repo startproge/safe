@@ -12,8 +12,11 @@ import androidx.navigation.ui.NavigationUI;
 import android.Manifest;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Window;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
@@ -44,6 +47,10 @@ public class EmergencyActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.setStatusBarColor(Color.parseColor("#008dea"));
+        }
         setContentView(R.layout.activity_emergency);
         pref = getSharedPreferences("storage", MODE_PRIVATE);
         String token=pref.getString("token",null);

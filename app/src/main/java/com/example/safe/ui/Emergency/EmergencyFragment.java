@@ -318,9 +318,9 @@ public class EmergencyFragment extends Fragment {
                     .setPositiveButton("确定", null)
                     .show();
         }
-        else if(photoCommit1==false){
+        else if(photoCommit1==false && photoCommit2==false && photoCommit3==false){
             new AlertDialog.Builder(getActivity()).setTitle("提示")
-                    .setMessage("至少提交第一张照片")
+                    .setMessage("至少提交一张照片")
                     .setPositiveButton("确定", null)
                     .show();
         }
