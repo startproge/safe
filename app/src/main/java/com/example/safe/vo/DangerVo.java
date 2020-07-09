@@ -5,7 +5,7 @@ public class DangerVo {
     private String riskSource;
     private String status;
     private String type;
-    private Integer timeLevel;
+    private Integer timeLimit;
 
     public int getId() {
         return id;
@@ -39,11 +39,15 @@ public class DangerVo {
         this.type = type;
     }
 
-    public int getTimeLevel() {
-        return timeLevel;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public void setTimeLevel(int timeLevel) {
-        this.timeLevel = timeLevel;
+    public Integer getTimeLimit() {
+        return timeLimit;
+    }
+
+    public void setTimeLimit(Integer timeLimit) {
+        this.timeLimit = timeLimit;
     }
 }

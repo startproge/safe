@@ -10,7 +10,7 @@ public class RectificationEntity implements Serializable {
 
     private Integer id;
 
-    private int type;
+    private String status;
 
     private String measure;
 
@@ -36,12 +36,12 @@ public class RectificationEntity implements Serializable {
         this.id = id;
     }
 
-    public int getType() {
-        return type;
+    public String getStatus() {
+        return status;
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getMeasure() {
@@ -100,6 +100,7 @@ public class RectificationEntity implements Serializable {
         this.pid3 = pid3;
     }
 
+
     public Integer getDid() {
         return did;
     }
@@ -108,11 +109,12 @@ public class RectificationEntity implements Serializable {
         this.did = did;
     }
 
+
     @Override
     public String toString() {
         return "RectificationEntity{" +
                 "id=" + id +
-                ", type=" + type +
+                ", status='" + status + '\'' +
                 ", measure='" + measure + '\'' +
                 ", document='" + document + '\'' +
                 ", uid=" + uid +

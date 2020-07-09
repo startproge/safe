@@ -1,35 +1,22 @@
-package com.example.safe.entity;
+package com.example.safe.vo;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class DangerEntity implements Serializable {
-    private Integer id;
+public class DangerInfoVo {
+    Integer id;
+    String type;
+    String riskSource;
+    String level;
+    String description;
+    String measure;
+    Integer timeLimit;
+    Integer uid;
+    Date createDate;
+    Integer pid1;
+    Integer pid2;
+    Integer pid3;
+    String dangerStatus;
 
-    private Integer type;
-
-
-    private String riskSource;
-
-    private Integer level;
-
-    private String description;
-
-    private String measure;
-
-    private Integer timeLimit;
-
-    private Integer uid;
-
-    private Date createDate;
-
-    private Integer pid1;
-
-    private Integer pid2;
-
-    private Integer pid3;
-
-    private String dangerStatus;
 
     public Integer getId() {
         return id;
@@ -39,11 +26,11 @@ public class DangerEntity implements Serializable {
         this.id = id;
     }
 
-    public Integer getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public void setType(String type) {
         this.type = type;
     }
 
@@ -55,11 +42,11 @@ public class DangerEntity implements Serializable {
         this.riskSource = riskSource;
     }
 
-    public Integer getLevel() {
+    public String getLevel() {
         return level;
     }
 
-    public void setLevel(Integer level) {
+    public void setLevel(String level) {
         this.level = level;
     }
 
@@ -95,14 +82,6 @@ public class DangerEntity implements Serializable {
         this.uid = uid;
     }
 
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
     public Integer getPid1() {
         return pid1;
     }
@@ -135,13 +114,21 @@ public class DangerEntity implements Serializable {
         this.dangerStatus = dangerStatus;
     }
 
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
     @Override
     public String toString() {
-        return "DangerEntity{" +
+        return "DangerInfoVo{" +
                 "id=" + id +
-                ", type=" + type +
+                ", type='" + type + '\'' +
                 ", riskSource='" + riskSource + '\'' +
-                ", level=" + level +
+                ", level='" + level + '\'' +
                 ", description='" + description + '\'' +
                 ", measure='" + measure + '\'' +
                 ", timeLimit=" + timeLimit +
@@ -150,10 +137,7 @@ public class DangerEntity implements Serializable {
                 ", pid1=" + pid1 +
                 ", pid2=" + pid2 +
                 ", pid3=" + pid3 +
-                ", dangerStatus=" + dangerStatus +
+                ", dangerStatus='" + dangerStatus + '\'' +
                 '}';
     }
-
-
-
 }

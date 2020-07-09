@@ -2,7 +2,6 @@ package com.example.safe.ui.SecurityAdmin;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.DatePickerDialog;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
@@ -57,7 +56,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-//import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
 
@@ -195,7 +193,7 @@ public class RectificationActivity extends AppCompatActivity {
         public void onLocationChanged(AMapLocation aMapLocation) {
             if (aMapLocation != null) {
                 if (aMapLocation.getErrorCode() == 0) {
-                    Log.e("getLocation", aMapLocation.getAddress());
+                    Log.e("getLocation1", aMapLocation.getAddress());
                     position=aMapLocation.getAddress();
                     mLocationClient.stopLocation();
                 } else {

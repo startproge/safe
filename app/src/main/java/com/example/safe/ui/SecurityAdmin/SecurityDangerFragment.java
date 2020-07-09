@@ -155,7 +155,7 @@ class DangerAdapter extends RecyclerView.Adapter implements View.OnClickListener
         DangerVo danger=dangerList.get(position);
         dangerViewHolder.dangerNameText.setText(danger.getRiskSource());
         dangerViewHolder.dangerTypeText.setText(danger.getType());
-        dangerViewHolder.dangerTimeLimitText.setText(""+danger.getTimeLevel());
+        dangerViewHolder.dangerTimeLimitText.setText(""+danger.getTimeLimit());
         dangerViewHolder.dangerStatusText.setText(danger.getStatus());
         dangerViewHolder.itemView.setTag(position);
     }

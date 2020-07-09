@@ -44,8 +44,7 @@ public class HeadOfSafeDangerFragment extends Fragment {
     private RecyclerView recyclerView;
     private DangerAdapter adapter;
     private List<DangerVo> dangerList =new ArrayList<>();
-    private int uid;
-
+    private String token;
     public View onCreateView(@NonNull final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_dangerquery, container, false);
         recyclerView = root.findViewById(R.id.recycler_danger);
@@ -53,39 +52,39 @@ public class HeadOfSafeDangerFragment extends Fragment {
         adapter = new DangerAdapter(dangerList,getActivity());
         recyclerView.setAdapter(adapter);
         adapter.OnRecycleItemClickListener((view, position) -> {
-            Intent intent=new Intent(getActivity(), AcceptanceActivity.class);
+            Intent intent=new Intent(getActivity(), AcceptanceInfActivity.class);
             intent.putExtra("dangerId",dangerList.get(position).getId());
             startActivity(intent);
         });
         pref = getActivity().getSharedPreferences("storage", MODE_PRIVATE);
-        uid=pref.getInt("uid",-1);
-        getDangerList(uid);
+        token=pref.getString("token","");
+        Log.e("token",token);
+        getDangerList(token);
         return root;
     }
 
-    private void getDangerList(int uid) {
+    private void getDangerList(String token) {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url("http://"+ UrlUtil.url +"/term/dangers/"+uid)
-                .method("GET", null)
+                .url("http://"+ UrlUtil.url +"/term/dangers/rectification")
+                .addHeader("token",token)
+                .get()
                 .build();
         Call call = client.newCall(request);
         call.enqueue(new Callback() {
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                Log.e("danger调用接口失败", Objects.requireNonNull(e.getMessage()));
+                Log.e("getDangerList调用接口失败", Objects.requireNonNull(e.getMessage()));
             }
 
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 if (response.isSuccessful()){
-//                    Log.e("dataJson", response.body().string());
                     Result result = JsonUtils.jsonToObject(response.body().string(), Result.class);
-//                    Log.e("data", result.toString());
                     dangerList = JsonUtils.jsonToList(
                             JsonUtils.objectToJson(result.getData()),
                             DangerVo.class);
-//                    Log.e("data1", dangerList.get(0).toString());
+                    Log.e("getDangerList", dangerList.toString());
                     Message message=new Message();
                     message.what=1;
                     handler.sendMessage(message);
@@ -148,7 +147,7 @@ class DangerAdapter extends RecyclerView.Adapter implements View.OnClickListener
         DangerVo danger=dangerList.get(position);
         dangerViewHolder.dangerNameText.setText(danger.getRiskSource());
         dangerViewHolder.dangerTypeText.setText(danger.getType());
-        dangerViewHolder.dangerTimeLimitText.setText(""+danger.getTimeLevel());
+        dangerViewHolder.dangerTimeLimitText.setText(""+danger.getTimeLimit());
         dangerViewHolder.dangerStatusText.setText(danger.getStatus());
         dangerViewHolder.itemView.setTag(position);
     }

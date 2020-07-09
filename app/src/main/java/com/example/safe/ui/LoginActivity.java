@@ -81,9 +81,6 @@ public class LoginActivity extends AppCompatActivity {
                     String userName=edtUser.getText().toString();
                     String passWord=edtPasswd.getText().toString();
                     Login(userName,passWord);
-//                    Message message = new Message();
-//                    message.what=1;
-//                    handler.sendMessage(message);
                 } catch (NumberFormatException e) {
                     new AlertDialog.Builder(LoginActivity.this).setTitle("提示")
                         .setMessage("账号格式错误(•_•)")
@@ -131,7 +128,7 @@ public class LoginActivity extends AppCompatActivity {
                         Intent  intent = new Intent(LoginActivity.this, HeadOfSafetyActivity.class);
                         startActivity(intent);
                     }else{
-                        Toast.makeText(getApplicationContext(), "登录类型不匹配", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "登录类型错误", Toast.LENGTH_SHORT).show();
                     }
                     break;
                 default:

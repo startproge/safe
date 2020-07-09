@@ -162,7 +162,7 @@ public class EmergencyFragment extends Fragment {
         public void onLocationChanged(AMapLocation aMapLocation) {
             if (aMapLocation != null) {
                 if (aMapLocation.getErrorCode() == 0) {
-                    Log.e("getLocation", aMapLocation.getAddress());
+                    Log.e("getLocation2", aMapLocation.getAddress());
                     position=aMapLocation.getAddress();
                     mLocationClient.stopLocation();
                 } else {
