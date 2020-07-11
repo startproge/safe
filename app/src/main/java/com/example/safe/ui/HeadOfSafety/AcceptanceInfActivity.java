@@ -220,9 +220,10 @@ public class AcceptanceInfActivity extends AppCompatActivity {
     }
 
     public void getImage(int index,String path) {
+        String end = path.substring(path.lastIndexOf("/") + 1, path.length()).toLowerCase();
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url(path)
+                .url("http://"+UrlUtil.url+"/term/images/user/"+end)
                 .get()
                 .build();
         Call call = client.newCall(request);

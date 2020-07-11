@@ -20,7 +20,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorDeepBlue"
-            app:titleTextColor="@color/colorWhite" />
+            app:titleTextColor="@color/colorWhite"
+
+            />
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

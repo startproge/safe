@@ -60,7 +60,7 @@ public class EmergencyActivity extends AppCompatActivity {
             Log.e("token",token);
         }
         toolbar = findViewById(R.id.tool_bar_main);
-        toolbar.setTitle("");
+        toolbar.setTitle("隐患排查");
         setSupportActionBar(toolbar);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(

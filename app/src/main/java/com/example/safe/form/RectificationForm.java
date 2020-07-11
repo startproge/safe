@@ -3,26 +3,26 @@ package com.example.safe.form;
 import java.util.List;
 
 public class RectificationForm {
-    String type;
+    String status;
     String measure;
     Integer uid;
     Integer did;
     List<String> position;
 
-    public RectificationForm(String type, String measure, Integer uid, Integer did, List<String> position) {
-        this.type = type;
+    public RectificationForm(String status, String measure, Integer uid, Integer did, List<String> position) {
+        this.status = status;
         this.measure = measure;
         this.uid = uid;
         this.did = did;
         this.position = position;
     }
 
-    public String getType() {
-        return type;
+    public String getStatus() {
+        return status;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getMeasure() {
@@ -57,11 +57,10 @@ public class RectificationForm {
         this.position = position;
     }
 
-
     @Override
     public String toString() {
         return "RectificationForm{" +
-                "type='" + type + '\'' +
+                "status='" + status + '\'' +
                 ", measure='" + measure + '\'' +
                 ", uid=" + uid +
                 ", did=" + did +

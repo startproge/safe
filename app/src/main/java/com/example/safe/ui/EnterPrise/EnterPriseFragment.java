@@ -52,8 +52,9 @@ public class EnterPriseFragment extends Fragment {
         positionText=root.findViewById(R.id.positionText);
         logoutText=root.findViewById(R.id.logoutText);
         logoutText.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), LoginActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent(getActivity(), LoginActivity.class);
+//            startActivity(intent);
+            getActivity().finish();
         });
         getEnterPriseInf(1);
         return root;

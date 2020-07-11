@@ -45,6 +45,7 @@ import com.example.safe.R;
 import com.example.safe.entity.PhotoEntity;
 import com.example.safe.entity.RectificationEntity;
 import com.example.safe.form.RectificationForm;
+import com.example.safe.ui.HeadOfSafety.AcceptanceInfActivity;
 import com.example.safe.util.JsonUtils;
 import com.example.safe.util.Result;
 import com.example.safe.util.UrlUtil;
@@ -296,6 +297,10 @@ public class RectificationActivity extends AppCompatActivity {
                     if(fileCommit==true){
                         uploadDoc(rectificationEntity.getId());
                     }
+                    new AlertDialog.Builder(RectificationActivity.this).setTitle("提示")
+                            .setMessage("提交成功")
+                            .setPositiveButton("确定", null)
+                            .show();
                     break;
                 default:
                     break;
@@ -387,6 +392,7 @@ public class RectificationActivity extends AppCompatActivity {
         String type = rectificationTypeSpinner.getSelectedItem().toString();
         String measure = Objects.requireNonNull(rectificationMeasureText.getText()).toString();
         RectificationForm rectificationForm=new RectificationForm(type,measure,uid,dangerId,positions);
+        Log.d("confirmRectificationType",type);
         OkHttpClient client = new OkHttpClient();
         RequestBody requestBody = RequestBody.create(JsonUtils.objectToJson(rectificationForm), MEDIA_TYPE_JSON);
         Request request = new Request.Builder()

@@ -1,49 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="60dp"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
-    >
+    android:orientation="vertical">
+
     <TextView
         android:id="@+id/dangerNameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="10dp"
         android:text="风险源名称"
-        >
-    </TextView>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <TextView
         android:id="@+id/dangerTypeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="@id/dangerNameText"
-        app:layout_constraintTop_toBottomOf="@id/dangerNameText"
         android:text="隐患类别"
-        >
-    </TextView>
+        app:layout_constraintLeft_toLeftOf="@id/dangerNameText"
+        app:layout_constraintTop_toBottomOf="@id/dangerNameText"/>
+
     <TextView
         android:id="@+id/dangerTimeLimitText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/dangerTypeText"
-        app:layout_constraintLeft_toRightOf="@id/dangerTypeText"
         android:layout_marginLeft="10dp"
         android:text="整改时限"
-        >
-    </TextView>
+        app:layout_constraintLeft_toRightOf="@id/dangerTypeText"
+        app:layout_constraintTop_toTopOf="@id/dangerTypeText"/>
+
+    <TextView
+        android:id="@+id/dangerTimeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="时间"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/dangerNameText"/>
+
     <TextView
         android:id="@+id/dangerStatusText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/dangerNameText"
-        app:layout_constraintRight_toRightOf="parent"
         android:text="隐患状态"
-        >
-    </TextView>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dangerTimeText"/>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/background"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

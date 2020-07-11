@@ -27,6 +27,7 @@ import com.example.safe.vo.DangerVo;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -41,7 +42,6 @@ public class DangerFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private DangerAdapter adapter;
-    private String urlStr = "http://47.98.229.17:8002/blm";
     private List<DangerVo> dangerList =new ArrayList<>();
     private int uid;
 
@@ -121,6 +121,7 @@ class DangerAdapter extends RecyclerView.Adapter implements View.OnClickListener
         TextView dangerTypeText;
         TextView dangerTimeLimitText;
         TextView dangerStatusText;
+        TextView dangerTimeText;
 
         DangerViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -128,6 +129,7 @@ class DangerAdapter extends RecyclerView.Adapter implements View.OnClickListener
             this.dangerTypeText = itemView.findViewById(R.id.dangerTypeText);
             this.dangerTimeLimitText = itemView.findViewById(R.id.dangerTimeLimitText);
             this.dangerStatusText = itemView.findViewById(R.id.dangerStatusText);
+            this.dangerTimeText =itemView.findViewById(R.id.dangerTimeText);
         }
     }
 
@@ -148,6 +150,8 @@ class DangerAdapter extends RecyclerView.Adapter implements View.OnClickListener
         dangerViewHolder.dangerTypeText.setText(danger.getType());
         dangerViewHolder.dangerTimeLimitText.setText(""+danger.getTimeLimit());
         dangerViewHolder.dangerStatusText.setText(danger.getStatus());
+        SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        dangerViewHolder.dangerTimeText.setText(format.format(danger.getCreateDate()));
         dangerViewHolder.itemView.setTag(position);
     }
 

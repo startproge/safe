@@ -42,6 +42,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.Emergency.EmergencyActivity" />
+        <activity android:name=".ui.Emergency.EmergencyInfActivity" />
         <activity android:name=".ui.SecurityAdmin.RectificationActivity" />
         <activity android:name=".ui.HeadOfSafety.AcceptanceActivity" />
 
