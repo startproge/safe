@@ -316,6 +316,7 @@ public class RectificationActivity extends AppCompatActivity {
                     try {
                         Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri1));
                         image1.setImageBitmap(bitmap);
+                        image1.setBackground(null);
                         photoCommit1=true;
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
@@ -327,6 +328,7 @@ public class RectificationActivity extends AppCompatActivity {
                     try {
                         Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri2));
                         image2.setImageBitmap(bitmap);
+                        image2.setBackground(null);
                         photoCommit2=true;
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
@@ -339,6 +341,7 @@ public class RectificationActivity extends AppCompatActivity {
                     try {
                         Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri3));
                         image3.setImageBitmap(bitmap);
+                        image3.setBackground(null);
                         photoCommit3=true;
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();

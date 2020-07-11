@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,6 +43,8 @@ import okhttp3.Response;
 import static android.content.Context.MODE_PRIVATE;
 
 public class EmergencyFragment extends Fragment {
+    SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private SearchView searchView;
     private SharedPreferences pref;
     private RecyclerView recyclerView;
     private TextView confirm;
@@ -52,6 +55,7 @@ public class EmergencyFragment extends Fragment {
     public View onCreateView(@NonNull final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_dangershoot, container, false);
         recyclerView = root.findViewById(R.id.recycler_danger);
+        searchView=root.findViewById(R.id.searchView);
         confirm=root.findViewById(R.id.confirmButton);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new DangerAdapter(dangerList,getActivity());
@@ -60,6 +64,24 @@ public class EmergencyFragment extends Fragment {
             Intent intent=new Intent(getActivity(), DangerActivity.class);
             intent.putExtra("dangerId",dangerList.get(position).getId());
             startActivity(intent);
+        });
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                search(query);
+                adapter.notifyDataSetChanged();
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if(newText.equals("")){
+                    adapter.setDangerList(dangerList);
+                    adapter.notifyDataSetChanged();
+                }
+                return false;
+            }
         });
         confirm.setOnClickListener(v->{
             Intent intent=new Intent(getActivity(),EmergencyInfActivity.class);
@@ -71,6 +93,19 @@ public class EmergencyFragment extends Fragment {
             getDangerList(uid);
         }
         return root;
+    }
+
+    public void search(String text){
+        List<DangerVo> resultList=new ArrayList<>();
+        for(DangerVo dangerVo:dangerList){
+            if(dangerVo.getRiskSource().contains(text)||format.format(dangerVo.getCreateDate()).contains(text)||
+                    dangerVo.getStatus().contains(text)||dangerVo.getType().contains(text)){
+                resultList.add(dangerVo);
+            }
+        }
+        Log.e("reviewList",""+resultList.size());
+        adapter.setDangerList(resultList);
+        adapter.notifyDataSetChanged();
     }
 
     private void getDangerList(int uid) {
