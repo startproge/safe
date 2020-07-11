@@ -1,5 +1,6 @@
 package com.example.safe.ui.EnterPrise;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -15,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import com.alibaba.fastjson.JSONObject;
 import com.example.safe.R;
 import com.example.safe.entity.EnterpriseEntity;
+import com.example.safe.ui.LoginActivity;
 import com.example.safe.util.Result;
 import com.example.safe.util.UrlUtil;
 
@@ -37,6 +39,7 @@ public class EnterPriseFragment extends Fragment {
     private TextView telephoneText;
     private TextView addressText;
     private TextView positionText;
+    private TextView logoutText;
 
     public View onCreateView(@NonNull final LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -47,6 +50,11 @@ public class EnterPriseFragment extends Fragment {
         telephoneText=root.findViewById(R.id.telephoneText);
         addressText=root.findViewById(R.id.addressText);
         positionText=root.findViewById(R.id.positionText);
+        logoutText=root.findViewById(R.id.logoutText);
+        logoutText.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
+            startActivity(intent);
+        });
         getEnterPriseInf(1);
         return root;
     }
