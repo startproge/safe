@@ -40,19 +40,15 @@ import java.io.IOException;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class LoginActivity extends AppCompatActivity {
-    private String url="10.0.2.2:8088";
-//    private String url="192.168.43.233:8088";
     private Toolbar toolbar;
     private EditText edtUser;
     private EditText edtPasswd;
-    private RadioGroup types;
     private SharedPreferences pref;
     private SharedPreferences.Editor editor ;
     private String token;
@@ -71,7 +67,6 @@ public class LoginActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(v -> finish());
         edtUser = findViewById(R.id.edt_user);
         edtPasswd = findViewById(R.id.edt_passwd);
-        types=findViewById(R.id.RadioGroup);
     }
 
     public void loginClick(View view) {
@@ -102,33 +97,42 @@ public class LoginActivity extends AppCompatActivity {
                     break;
                 case 2:
                     int type=userEntity.getType();
-                    String typeChosen=getCheckedItem();
-                    if (typeChosen.equals("应急局人员")&&type==1) {
-                        editor.putInt("uid",userEntity.getId());
-                        editor.putInt("type",userEntity.getType());
-                        editor.apply();
-                        Intent  intent = new Intent(LoginActivity.this, EmergencyActivity.class);
-                        startActivity(intent);
-                    }else if(typeChosen.equals("安全管理员")&&type==2){
-                        editor.putInt("uid",userEntity.getId());
-                        editor.putInt("type",userEntity.getType());
-                        editor.apply();
-                        Intent  intent = new Intent(LoginActivity.this, SecurityAdminActivity.class);
-                        startActivity(intent);
-                    }else if(typeChosen.equals("安全管理负责人")&&type==3){
-                        editor.putInt("uid",userEntity.getId());
-                        editor.putInt("type",userEntity.getType());
-                        editor.apply();
-                        Intent  intent = new Intent(LoginActivity.this, SecurityAdminActivity.class);
-                        startActivity(intent);
-                    }else if(typeChosen.equals("安全管理验收员")&&type==4){
-                        editor.putInt("uid",userEntity.getId());
-                        editor.putInt("type",userEntity.getType());
-                        editor.apply();
-                        Intent  intent = new Intent(LoginActivity.this, HeadOfSafetyActivity.class);
-                        startActivity(intent);
-                    }else{
-                        Toast.makeText(getApplicationContext(), "登录类型错误", Toast.LENGTH_SHORT).show();
+                    switch (type) {
+                        case 1: {
+                            editor.putInt("uid", userEntity.getId());
+                            editor.putInt("type", userEntity.getType());
+                            editor.apply();
+                            Intent intent = new Intent(LoginActivity.this, EmergencyActivity.class);
+                            startActivity(intent);
+                            break;
+                        }
+                        case 2: {
+                            editor.putInt("uid", userEntity.getId());
+                            editor.putInt("type", userEntity.getType());
+                            editor.apply();
+                            Intent intent = new Intent(LoginActivity.this, SecurityAdminActivity.class);
+                            startActivity(intent);
+                            break;
+                        }
+                        case 3: {
+                            editor.putInt("uid", userEntity.getId());
+                            editor.putInt("type", userEntity.getType());
+                            editor.apply();
+                            Intent intent = new Intent(LoginActivity.this, SecurityAdminActivity.class);
+                            startActivity(intent);
+                            break;
+                        }
+                        case 4: {
+                            editor.putInt("uid", userEntity.getId());
+                            editor.putInt("type", userEntity.getType());
+                            editor.apply();
+                            Intent intent = new Intent(LoginActivity.this, HeadOfSafetyActivity.class);
+                            startActivity(intent);
+                            break;
+                        }
+                        default:
+                            Toast.makeText(getApplicationContext(), "登录类型错误", Toast.LENGTH_SHORT).show();
+                            break;
                     }
                     break;
                 default:
@@ -206,13 +210,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    private String getCheckedItem(){
-        String result=null;
-        RadioButton rb = (RadioButton)findViewById(types.getCheckedRadioButtonId());
-        result=rb.getText().toString();
-        return result;
     }
 
 }
